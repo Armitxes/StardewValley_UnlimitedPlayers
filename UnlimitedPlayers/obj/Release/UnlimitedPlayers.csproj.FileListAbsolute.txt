@@ -4,7 +4,6 @@ D:\Projekte\StardewValley\UnlimitedPlayers\UnlimitedPlayers\UnlimitedPlayers\bin
 D:\Projekte\StardewValley\UnlimitedPlayers\UnlimitedPlayers\UnlimitedPlayers\bin\Release\Lidgren.Network.pdb
 D:\Projekte\StardewValley\UnlimitedPlayers\UnlimitedPlayers\UnlimitedPlayers\obj\Release\UnlimitedPlayers.csprojResolveAssemblyReference.cache
 D:\Projekte\StardewValley\UnlimitedPlayers\UnlimitedPlayers\UnlimitedPlayers\obj\Release\UnlimitedPlayers.csproj.CoreCompileInputs.cache
-D:\Projekte\StardewValley\UnlimitedPlayers\UnlimitedPlayers\UnlimitedPlayers\obj\Release\UnlimitedPlayers.csproj.CopyComplete
 D:\Projekte\StardewValley\UnlimitedPlayers\UnlimitedPlayers\UnlimitedPlayers\obj\Release\UnlimitedPlayers.dll
 D:\Projekte\StardewValley\UnlimitedPlayers\UnlimitedPlayers\UnlimitedPlayers\obj\Release\UnlimitedPlayers.pdb
 D:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Mods\UnlimitedPlayers\UnlimitedPlayers.dll

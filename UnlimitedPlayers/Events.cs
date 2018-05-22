@@ -1,8 +1,8 @@
 ﻿using System;
-using StardewModdingAPI;
 using System.Collections.Generic;
 using StardewValley;
 using StardewValley.Menus;
+using StardewModdingAPI;
 using StardewModdingAPI.Events;
 
 namespace Armitxes.StardewValley.UnlimitedPlayers
@@ -32,9 +32,8 @@ namespace Armitxes.StardewValley.UnlimitedPlayers
 
 		public static void GameEvents_FirstUpdateTick(object sender, EventArgs e)
 		{
-			Type type = typeof(Game1);
-			Multiplayer mp_mp = LazyHelper.GetInstanceField(type, Game1.game1, "multiplayer") as Multiplayer;
-			mp_mp.playerLimit = LazyHelper.PlayerLimit;
+			// Overwrite the player limit in Stardew Valley source code
+			LazyHelper.OverwritePlayerLimit();
 		}
 	}
 }

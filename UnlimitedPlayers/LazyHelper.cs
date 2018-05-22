@@ -1,4 +1,5 @@
 ﻿using System;
+using StardewValley;
 using StardewModdingAPI;
 using System.Reflection;
 
@@ -15,6 +16,13 @@ namespace Armitxes.StardewValley.UnlimitedPlayers
 			BindingFlags bindFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
 			FieldInfo field = type.GetField(fieldName, bindFlags);
 			return field.GetValue(instance);
+		}
+
+		public static void OverwritePlayerLimit()
+		{
+			Type type = typeof(Game1);
+			Multiplayer mp_mp = LazyHelper.GetInstanceField(type, Game1.game1, "multiplayer") as Multiplayer;
+			mp_mp.playerLimit = LazyHelper.PlayerLimit;
 		}
 	}
 

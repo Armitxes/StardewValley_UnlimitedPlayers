@@ -19,6 +19,8 @@ namespace Armitxes.StardewValley.UnlimitedPlayers
 			GameEvents.FirstUpdateTick += Events.GameEvents_FirstUpdateTick;
 			MenuEvents.MenuChanged += new EventHandler<EventArgsClickableMenuChanged>(Events.MenuEvents_MenuChanged);
 
+			// Overwrite the player limit in Stardew Valley source code
+			LazyHelper.OverwritePlayerLimit();
 			LazyHelper.ModEntry.Monitor.Log("Player limit set to " + LazyHelper.PlayerLimit + " players.", LogLevel.Info);
 		}
 	}
