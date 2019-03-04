@@ -1,9 +1,9 @@
 ﻿using System;
-using StardewValley;
-using StardewModdingAPI;
 using System.Reflection;
+using StardewModdingAPI;
+using StardewValley;
 
-namespace Armitxes.StardewValley.UnlimitedPlayers
+namespace UnlimitedPlayers
 {
 	public static class LazyHelper
 	{
@@ -15,15 +15,14 @@ namespace Armitxes.StardewValley.UnlimitedPlayers
 		{
 			BindingFlags bindFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
 			FieldInfo field = type.GetField(fieldName, bindFlags);
-			return field.GetValue(instance);
+			return field?.GetValue(instance);
 		}
 
 		public static void OverwritePlayerLimit()
 		{
 			Type type = typeof(Game1);
-			Multiplayer mp_mp = LazyHelper.GetInstanceField(type, Game1.game1, "multiplayer") as Multiplayer;
-			mp_mp.playerLimit = LazyHelper.PlayerLimit;
-		}
+            if (GetInstanceField(type, Game1.game1, "multiplayer") is Multiplayer mpMp) mpMp.playerLimit = PlayerLimit;
+        }
 	}
 
 	public class ConfigParser
@@ -32,7 +31,7 @@ namespace Armitxes.StardewValley.UnlimitedPlayers
 
 		public void Store()
 		{
-			LazyHelper.PlayerLimit = this.PlayerLimit;
+			LazyHelper.PlayerLimit = PlayerLimit;
 		}
 	}
 }
