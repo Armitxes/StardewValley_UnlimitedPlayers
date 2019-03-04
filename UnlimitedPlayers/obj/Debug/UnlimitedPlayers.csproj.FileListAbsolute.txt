@@ -1,5 +1,0 @@
-C:\Users\eurio\Desktop\GitsForSDV1.3.35\StardewValley_UnlimitedPlayers\UnlimitedPlayers\obj\Debug\UnlimitedPlayers.csproj.CoreCompileInputs.cache
-C:\Users\eurio\Desktop\GitsForSDV1.3.35\StardewValley_UnlimitedPlayers\UnlimitedPlayers\bin\Debug\UnlimitedPlayers.dll
-C:\Users\eurio\Desktop\GitsForSDV1.3.35\StardewValley_UnlimitedPlayers\UnlimitedPlayers\bin\Debug\UnlimitedPlayers.pdb
-C:\Users\eurio\Desktop\GitsForSDV1.3.35\StardewValley_UnlimitedPlayers\UnlimitedPlayers\obj\Debug\UnlimitedPlayers.dll
-C:\Users\eurio\Desktop\GitsForSDV1.3.35\StardewValley_UnlimitedPlayers\UnlimitedPlayers\obj\Debug\UnlimitedPlayers.pdb
