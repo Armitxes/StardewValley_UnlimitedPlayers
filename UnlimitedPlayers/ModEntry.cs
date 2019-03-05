@@ -1,8 +1,6 @@
-﻿using System;
-using StardewModdingAPI;
-using StardewModdingAPI.Events;
+﻿using StardewModdingAPI;
 
-namespace Armitxes.StardewValley.UnlimitedPlayers
+namespace UnlimitedPlayers
 {
 	/// <summary>The mod entry point.</summary>
 	public class ModEntry : Mod
@@ -15,9 +13,9 @@ namespace Armitxes.StardewValley.UnlimitedPlayers
 			parser.Store(); // Now we can access the config from every class without helper or passing the instance
 			LazyHelper.ModHelper = helper; // And here I am just absolutly lazy - terribly sorry >.<
 			LazyHelper.ModEntry = this; // There will always only be one valid instance + see above
-
-			GameEvents.FirstUpdateTick += Events.GameEvents_FirstUpdateTick;
-			MenuEvents.MenuChanged += new EventHandler<EventArgsClickableMenuChanged>(Events.MenuEvents_MenuChanged);
+		    helper.Events.GameLoop.GameLaunched += Events.GameEvents_FirstUpdateTick;
+			//GameEvents.FirstUpdateTick += Events.GameEvents_FirstUpdateTick;
+			helper.Events.Display.MenuChanged += Events.MenuEvents_MenuChanged;
 
 			// Overwrite the player limit in Stardew Valley source code
 			LazyHelper.OverwritePlayerLimit();
