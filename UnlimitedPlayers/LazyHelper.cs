@@ -2,6 +2,7 @@
 using System.Reflection;
 using StardewModdingAPI;
 using StardewValley;
+using StardewValley.Network;
 
 namespace UnlimitedPlayers
 {
@@ -21,8 +22,16 @@ namespace UnlimitedPlayers
 		public static void OverwritePlayerLimit()
 		{
 			Type type = typeof(Game1);
-            if (GetInstanceField(type, Game1.game1, "multiplayer") is Multiplayer mpMp) mpMp.playerLimit = PlayerLimit;
-        }
+			if (GetInstanceField(type, Game1.game1, "multiplayer") is Multiplayer mpMp)
+			{
+				int newLimit = Game1.IsServer || Game1.IsMasterGame ? PlayerLimit : Game1.netWorldState.Value.CurrentPlayerLimit;
+				if (mpMp.playerLimit != newLimit)
+				{
+					mpMp.playerLimit = newLimit;
+					LazyHelper.ModEntry.Monitor.Log("Adjusted limit to " + mpMp.playerLimit + " players", LogLevel.Info);
+				}
+			}
+		}
 	}
 
 	public class ConfigParser
