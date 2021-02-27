@@ -7,7 +7,8 @@ namespace UnlimitedPlayers.Events.GameLoop
 		public void FirstUpdateTick(object sender, GameLaunchedEventArgs e)
 		{
 			// Overwrite the player limit in Stardew Valley source code
-			LazyHelper.OverwritePlayerLimit();
+			LazyHelper.UpdateHost();
+			LazyHelper.UpdateClient();
 		}
 	}
 }

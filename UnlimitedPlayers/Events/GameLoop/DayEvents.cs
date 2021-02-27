@@ -6,7 +6,8 @@ namespace UnlimitedPlayers.Events.GameLoop
 	{
 		public void DayStarted(object sender, DayStartedEventArgs e)
 		{
-			LazyHelper.OverwritePlayerLimit();
+			LazyHelper.UpdateHost();
+			LazyHelper.UpdateClient();
 		}
 	}
 }

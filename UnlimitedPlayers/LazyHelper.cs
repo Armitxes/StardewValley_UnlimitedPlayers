@@ -2,7 +2,6 @@
 using System.Reflection;
 using StardewModdingAPI;
 using StardewValley;
-using StardewValley.Network;
 
 namespace UnlimitedPlayers
 {
@@ -19,17 +18,69 @@ namespace UnlimitedPlayers
 			return field?.GetValue(instance);
 		}
 
-		public static void OverwritePlayerLimit()
+		public static void UpdateHost()
 		{
-			Type type = typeof(Game1);
-			if (GetInstanceField(type, Game1.game1, "multiplayer") is Multiplayer mpMp)
+			if (Game1.netWorldState == null || !Game1.IsMasterGame)
+				return;
+
+			int currentPlayerLimit = Game1.netWorldState.Value.CurrentPlayerLimit;
+			int highestPlayerLimit = Game1.netWorldState.Value.CurrentPlayerLimit;
+
+			if (currentPlayerLimit != PlayerLimit)
+				Game1.netWorldState.Value.CurrentPlayerLimit.Set(PlayerLimit);
+
+			if (highestPlayerLimit != PlayerLimit)
+				Game1.netWorldState.Value.HighestPlayerLimit.Set(PlayerLimit);
+
+			if (GetInstanceField(typeof(Game1), Game1.game1, "multiplayer") is Multiplayer mp)
 			{
-				int newLimit = Game1.IsServer || Game1.IsMasterGame ? PlayerLimit : Game1.netWorldState.Value.CurrentPlayerLimit;
-				if (mpMp.playerLimit != newLimit)
-				{
-					mpMp.playerLimit = newLimit;
-					LazyHelper.ModEntry.Monitor.Log("Adjusted limit to " + mpMp.playerLimit + " players", LogLevel.Info);
-				}
+				int playerLimit = mp.playerLimit;
+				if (playerLimit != PlayerLimit)
+					mp.playerLimit = PlayerLimit;
+
+				// GameRunner.instance expects public StardewValley.GameRunner - which we can inject and override.
+				// However, SMAPI injected its internal StardewModdingAPI.Framework.SGameRunner - which we can't inject nor override.
+
+				if (
+					currentPlayerLimit == PlayerLimit
+					&& highestPlayerLimit == PlayerLimit
+					&& playerLimit == PlayerLimit
+				)
+					return;
+
+				ModEntry.Monitor.Log(
+					"\n[SERVER] Adjusting limit to " + PlayerLimit + " players." +
+					"\n- Multiplayer.playerLimit: " + mp.playerLimit +
+					"\n- Multiplayer.MaxPlayers: " + mp.MaxPlayers + " (fixed once you create/join a multiplayer session)" +
+					"\n- GameRunnerInstance.GetMaxSimultaneousPlayers(): " + GameRunner.instance.GetMaxSimultaneousPlayers() +
+					"\n- netWorldState.CurrentPlayerLimit: " + Game1.netWorldState.Value.CurrentPlayerLimit +
+					"\n- netWorldState.HighestPlayerLimit: " + Game1.netWorldState.Value.HighestPlayerLimit,
+					LogLevel.Info
+				);
+			}
+		}
+
+		public static void UpdateClient()
+		{
+			if (Game1.netWorldState == null || Game1.IsMasterGame)
+				return;
+
+			if (GetInstanceField(typeof(Game1), Game1.game1, "multiplayer") is Multiplayer mp)
+			{
+				int newLimit = Game1.netWorldState.Value.HighestPlayerLimit;
+				if (mp.playerLimit == newLimit)
+					return;
+
+				mp.playerLimit = newLimit;
+				ModEntry.Monitor.Log(
+					"\n[CLIENT] Adjusting limit to " + newLimit + " players." +
+					"\n- Multiplayer.playerLimit: " + mp.playerLimit +
+					"\n- Multiplayer.MaxPlayers: " + mp.MaxPlayers + 
+					"\n- GameRunnerInstance.GetMaxSimultaneousPlayers(): " + GameRunner.instance.GetMaxSimultaneousPlayers() +
+					"\n- netWorldState.CurrentPlayerLimit: " + Game1.netWorldState.Value.CurrentPlayerLimit +
+					"\n- netWorldState.HighestPlayerLimit: " + Game1.netWorldState.Value.HighestPlayerLimit,
+					LogLevel.Info
+				);
 			}
 		}
 	}
