@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "J5SSsk5fSvyI/yOirr2tHTinjLXzLV6lYP9+9aj7r3wRbTFelelPB4T0badj6tjFJG2ACXik+xRLWPqilM2CTA==",
+  "success": true,
+  "projectFilePath": "D:\\GitDepots\\StardewValley_UnlimitedPlayers\\UnlimitedPlayers\\UnlimitedPlayers.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tenebrosful\\.nuget\\packages\\pathoschild.stardew.modbuildconfig\\4.1.1\\pathoschild.stardew.modbuildconfig.4.1.1.nupkg.sha512",
+    "C:\\Users\\tenebrosful\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.28\\microsoft.windowsdesktop.app.ref.6.0.28.nupkg.sha512",
+    "C:\\Users\\tenebrosful\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.28\\microsoft.netcore.app.ref.6.0.28.nupkg.sha512",
+    "C:\\Users\\tenebrosful\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.28\\microsoft.aspnetcore.app.ref.6.0.28.nupkg.sha512"
+  ],
+  "logs": []
+}
