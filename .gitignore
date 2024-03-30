@@ -1,5 +1,3 @@
 .vs
-**/obj/Debug/
-**/bin/Debug/
-**/obj/Release/
-**/bin/Release/
+**/obj
+**/bin
