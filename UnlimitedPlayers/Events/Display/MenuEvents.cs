@@ -2,8 +2,8 @@
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
-using System;
-using System.Collections.Generic;
+using System.Linq;
+using static StardewValley.Menus.CarpenterMenu;
 
 namespace UnlimitedPlayers.Events.Display
 {
@@ -12,7 +12,7 @@ namespace UnlimitedPlayers.Events.Display
 		public void MenuChanged(object sender, MenuChangedEventArgs e)
 		{
 			if (e.NewMenu is CarpenterMenu)
-				this.MenuChanged_CarpenterMenu(sender, e);
+				MenuChanged_CarpenterMenu(sender, e);
 		}
 
 		public void MenuChanged_CarpenterMenu(object sender, MenuChangedEventArgs e)
@@ -22,14 +22,16 @@ namespace UnlimitedPlayers.Events.Display
 
 			if (Game1.IsMasterGame || Game1.IsServer)
 			{
-				// int buildingsConstructed = Game1.getFarm().getNumberBuildingsConstructed("Cabin");
-				Type type = typeof(CarpenterMenu);
-				object newMenu = e.NewMenu;
+				int buildingsConstructed = Game1.getFarm().getNumberBuildingsConstructed("Cabin");
+				if (buildingsConstructed <= 8) return;
 
-				List<BluePrint> bluePrints = LazyHelper.GetInstanceField(type, newMenu, "blueprints") as List<BluePrint>;
-				bluePrints?.Add(new BluePrint("Stone Cabin"));
-				bluePrints?.Add(new BluePrint("Plank Cabin"));
-				bluePrints?.Add(new BluePrint("Log Cabin"));
+				CarpenterMenu newMenu = e.NewMenu as CarpenterMenu;
+				int index = newMenu.Blueprints.Last().Index + 1;
+
+				var cabin = Game1.buildingData["Cabin"];
+				var buildings = newMenu.Blueprints;
+
+				buildings.Add(new BlueprintEntry(index, "Cabin", cabin, null));
 			}
 		}
 	}

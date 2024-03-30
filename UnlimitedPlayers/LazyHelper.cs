@@ -20,17 +20,17 @@ namespace UnlimitedPlayers
 
 		public static void UpdateHost()
 		{
-			if (Game1.netWorldState == null || !Game1.IsMasterGame)
+			if (Game1.netWorldState.Value == null || !Game1.IsMasterGame)
 				return;
 
 			int currentPlayerLimit = Game1.netWorldState.Value.CurrentPlayerLimit;
 			int highestPlayerLimit = Game1.netWorldState.Value.CurrentPlayerLimit;
 
 			if (currentPlayerLimit != PlayerLimit)
-				Game1.netWorldState.Value.CurrentPlayerLimit.Set(PlayerLimit);
+				Game1.netWorldState.Value.CurrentPlayerLimit = PlayerLimit;
 
 			if (highestPlayerLimit != PlayerLimit)
-				Game1.netWorldState.Value.HighestPlayerLimit.Set(PlayerLimit);
+				Game1.netWorldState.Value.HighestPlayerLimit = PlayerLimit;
 
 			if (GetInstanceField(typeof(Game1), Game1.game1, "multiplayer") is Multiplayer mp)
 			{
@@ -62,7 +62,7 @@ namespace UnlimitedPlayers
 
 		public static void UpdateClient()
 		{
-			if (Game1.netWorldState == null || Game1.IsMasterGame)
+			if (Game1.netWorldState.Value == null || Game1.IsMasterGame)
 				return;
 
 			if (GetInstanceField(typeof(Game1), Game1.game1, "multiplayer") is Multiplayer mp)
