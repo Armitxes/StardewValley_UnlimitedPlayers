@@ -20,7 +20,7 @@ namespace UnlimitedPlayers
 
 		public static void UpdateHost()
 		{
-			if (Game1.netWorldState == null || !Game1.IsMasterGame)
+			if (Game1.netWorldState.Value == null || !Game1.IsMasterGame)
 				return;
 
 			int currentPlayerLimit = Game1.netWorldState.Value.CurrentPlayerLimit;
@@ -62,7 +62,7 @@ namespace UnlimitedPlayers
 
 		public static void UpdateClient()
 		{
-			if (Game1.netWorldState == null || Game1.IsMasterGame)
+			if (Game1.netWorldState.Value == null || Game1.IsMasterGame)
 				return;
 
 			if (GetInstanceField(typeof(Game1), Game1.game1, "multiplayer") is Multiplayer mp)

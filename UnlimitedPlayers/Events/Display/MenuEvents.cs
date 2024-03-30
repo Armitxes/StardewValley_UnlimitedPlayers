@@ -1,12 +1,8 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using StardewValley.Buildings;
 using StardewValley.Menus;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using static StardewValley.Menus.CarpenterMenu;
 
 namespace UnlimitedPlayers.Events.Display
@@ -16,7 +12,7 @@ namespace UnlimitedPlayers.Events.Display
 		public void MenuChanged(object sender, MenuChangedEventArgs e)
 		{
 			if (e.NewMenu is CarpenterMenu)
-				this.MenuChanged_CarpenterMenu(sender, e);
+				MenuChanged_CarpenterMenu(sender, e);
 		}
 
 		public void MenuChanged_CarpenterMenu(object sender, MenuChangedEventArgs e)
@@ -35,7 +31,7 @@ namespace UnlimitedPlayers.Events.Display
 				var cabin = Game1.buildingData["Cabin"];
 				var buildings = newMenu.Blueprints;
 
-				buildings.Add(new BlueprintEntry(index, "Cabin", cabin, (string)null));
+				buildings.Add(new BlueprintEntry(index, "Cabin", cabin, null));
 			}
 		}
 	}
