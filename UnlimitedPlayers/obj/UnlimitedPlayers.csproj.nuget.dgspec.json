@@ -1,0 +1,88 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\GitDepots\\StardewValley_UnlimitedPlayers\\UnlimitedPlayers\\UnlimitedPlayers.csproj": {}
+  },
+  "projects": {
+    "D:\\GitDepots\\StardewValley_UnlimitedPlayers\\UnlimitedPlayers\\UnlimitedPlayers.csproj": {
+      "version": "2024.3.29-unofficial.1-tenebrosful",
+      "restore": {
+        "projectUniqueName": "D:\\GitDepots\\StardewValley_UnlimitedPlayers\\UnlimitedPlayers\\UnlimitedPlayers.csproj",
+        "projectName": "UnlimitedPlayers",
+        "projectPath": "D:\\GitDepots\\StardewValley_UnlimitedPlayers\\UnlimitedPlayers\\UnlimitedPlayers.csproj",
+        "packagesPath": "C:\\Users\\tenebrosful\\.nuget\\packages\\",
+        "outputPath": "D:\\GitDepots\\StardewValley_UnlimitedPlayers\\UnlimitedPlayers\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\tenebrosful\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Pathoschild.Stardew.ModBuildConfig": {
+              "target": "Package",
+              "version": "[4.1.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.28, 6.0.28]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.28, 6.0.28]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.28, 6.0.28]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -27,10 +27,10 @@ namespace UnlimitedPlayers
 			int highestPlayerLimit = Game1.netWorldState.Value.CurrentPlayerLimit;
 
 			if (currentPlayerLimit != PlayerLimit)
-				Game1.netWorldState.Value.CurrentPlayerLimit.Set(PlayerLimit);
+				Game1.netWorldState.Value.CurrentPlayerLimit = PlayerLimit;
 
 			if (highestPlayerLimit != PlayerLimit)
-				Game1.netWorldState.Value.HighestPlayerLimit.Set(PlayerLimit);
+				Game1.netWorldState.Value.HighestPlayerLimit = PlayerLimit;
 
 			if (GetInstanceField(typeof(Game1), Game1.game1, "multiplayer") is Multiplayer mp)
 			{
