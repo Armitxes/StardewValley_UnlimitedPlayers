@@ -5,8 +5,8 @@ using StardewValley;
 
 namespace UnlimitedPlayers.Events.Multiplayer
 {
-	class ConnectionEvents
-	{
+  class ConnectionEvents
+  {
 
     public void PeerConnected(object sender, PeerConnectedEventArgs e)
     {
@@ -36,5 +36,5 @@ namespace UnlimitedPlayers.Events.Multiplayer
       }
     }
 
-	}
+  }
 }
