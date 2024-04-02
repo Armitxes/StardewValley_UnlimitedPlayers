@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using StardewModdingAPI;
 using StardewValley;
@@ -8,6 +9,9 @@ namespace UnlimitedPlayers
 	public static class LazyHelper
 	{
 		public static int PlayerLimit { get; set; } = 10;
+		public static int KickOnModsMismatch { get; set; } = 0;
+		public static List<string> RequiredMods { get; set; } = new List<string>();
+		public static List<string> OptionalMods { get; set; } = new List<string>();
 		public static IModHelper ModHelper { get; set; }
 		public static ModEntry ModEntry { get; set; }
 
@@ -48,14 +52,13 @@ namespace UnlimitedPlayers
 				)
 					return;
 
-				ModEntry.Monitor.Log(
+				LogInfo(
 					"\n[SERVER] Adjusting limit to " + PlayerLimit + " players." +
 					"\n- Multiplayer.playerLimit: " + mp.playerLimit +
 					"\n- Multiplayer.MaxPlayers: " + mp.MaxPlayers + " (fixed once you create/join a multiplayer session)" +
 					"\n- GameRunnerInstance.GetMaxSimultaneousPlayers(): " + GameRunner.instance.GetMaxSimultaneousPlayers() +
 					"\n- netWorldState.CurrentPlayerLimit: " + Game1.netWorldState.Value.CurrentPlayerLimit +
-					"\n- netWorldState.HighestPlayerLimit: " + Game1.netWorldState.Value.HighestPlayerLimit,
-					LogLevel.Info
+					"\n- netWorldState.HighestPlayerLimit: " + Game1.netWorldState.Value.HighestPlayerLimit
 				);
 			}
 		}
@@ -72,16 +75,25 @@ namespace UnlimitedPlayers
 					return;
 
 				mp.playerLimit = newLimit;
-				ModEntry.Monitor.Log(
+				LogInfo(
 					"\n[CLIENT] Adjusting limit to " + newLimit + " players." +
 					"\n- Multiplayer.playerLimit: " + mp.playerLimit +
 					"\n- Multiplayer.MaxPlayers: " + mp.MaxPlayers + 
 					"\n- GameRunnerInstance.GetMaxSimultaneousPlayers(): " + GameRunner.instance.GetMaxSimultaneousPlayers() +
 					"\n- netWorldState.CurrentPlayerLimit: " + Game1.netWorldState.Value.CurrentPlayerLimit +
-					"\n- netWorldState.HighestPlayerLimit: " + Game1.netWorldState.Value.HighestPlayerLimit,
-					LogLevel.Info
+					"\n- netWorldState.HighestPlayerLimit: " + Game1.netWorldState.Value.HighestPlayerLimit
 				);
 			}
+		}
+
+		public static void LogInfo(string message)
+		{
+			ModEntry.Monitor.Log(message, LogLevel.Info);
+		}
+
+		public static void LogWarn(string message)
+		{
+			ModEntry.Monitor.Log(message, LogLevel.Warn);
 		}
 	}
 
@@ -89,9 +101,18 @@ namespace UnlimitedPlayers
 	{
 		public int PlayerLimit { get; set; } = 10;
 
+		public int KickOnModsMismatch { get; set; } = 0;
+
+		public List<string> RequiredMods { get; set; } = new List<string>();
+
+		public List<string> OptionalMods { get; set; } = new List<string>();
+
 		public void Store()
 		{
 			LazyHelper.PlayerLimit = PlayerLimit;
+			LazyHelper.KickOnModsMismatch = KickOnModsMismatch;
+			LazyHelper.RequiredMods = RequiredMods;
+			LazyHelper.OptionalMods = OptionalMods;
 		}
 	}
 }
