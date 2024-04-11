@@ -2,12 +2,12 @@
 
 namespace UnlimitedPlayers.Events.GameLoop
 {
-	class DayEvents
-	{
-		public void DayStarted(object sender, DayStartedEventArgs e)
-		{
-			LazyHelper.UpdateHost();
-			LazyHelper.UpdateClient();
-		}
-	}
+  class DayEvents
+  {
+    public void DayStarted(object sender, DayStartedEventArgs e)
+    {
+      LazyHelper.UpdateHost();
+      LazyHelper.UpdateClient();
+    }
+  }
 }
