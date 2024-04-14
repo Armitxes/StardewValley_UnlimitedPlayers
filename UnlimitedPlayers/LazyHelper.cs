@@ -52,14 +52,7 @@ namespace UnlimitedPlayers
         )
           return;
 
-        LogInfo(
-          "\n[SERVER] Adjusting limit to " + PlayerLimit + " players." +
-          "\n- Multiplayer.playerLimit: " + mp.playerLimit +
-          "\n- Multiplayer.MaxPlayers: " + mp.MaxPlayers + " (fixed once you create/join a multiplayer session)" +
-          "\n- GameRunnerInstance.GetMaxSimultaneousPlayers(): " + GameRunner.instance.GetMaxSimultaneousPlayers() +
-          "\n- netWorldState.CurrentPlayerLimit: " + Game1.netWorldState.Value.CurrentPlayerLimit +
-          "\n- netWorldState.HighestPlayerLimit: " + Game1.netWorldState.Value.HighestPlayerLimit
-        );
+        LogInfo("\n[SERVER] Adjusting limit to " + PlayerLimit + " players.");
       }
     }
 

@@ -1,3 +1,6 @@
 {
-  "PlayerLimit": 10
+  "PlayerLimit": 10,
+  "KickOnModsMismatch": 0,
+  "RequiredMods": [],
+  "OptionalMods": []
 }
