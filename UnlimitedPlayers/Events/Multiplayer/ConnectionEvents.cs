@@ -10,29 +10,25 @@ namespace UnlimitedPlayers.Events.Multiplayer
 
     public void PeerConnected(object sender, PeerConnectedEventArgs e)
     {
-      List<string> requiredMods = LazyHelper.RequiredMods;
-      List<string> unknownMods = new List<string>();
+      List<string> clientMods = new List<string>();
+      List<string> denylistMods = new List<string>();
 
       foreach (IMultiplayerPeerMod mod in e.Peer.Mods)
       {
-        bool removed = requiredMods.Remove(mod.ID);
-        if (!removed && !LazyHelper.OptionalMods.Contains(mod.ID))
-          unknownMods.Add(mod.ID);
+        clientMods.Add(mod.ID);
+        if (LazyHelper.ClientModsDenylist.Contains(mod.ID))
+          denylistMods.Add(mod.ID);
       }
 
-      string requiredModsStr = string.Join(", ", requiredMods);
-      string unknownModsStr = string.Join(", ", unknownMods);
+      string clientModsStr = string.Join(", ", clientMods);
+      string deniedModsStr = string.Join(", ", denylistMods);
 
-      string warning = "";
-      if (requiredMods.Count > 0)
-        warning += $"Peer {e.Peer.PlayerID} misses required mods: {requiredModsStr}\n";
-      if (unknownMods.Count > 0)
-        warning += $"Peer {e.Peer.PlayerID} uses non-whitelisted mods: {unknownModsStr}\n";
-      if (warning != "")
-      {
-        LazyHelper.LogWarn(warning);
-        if (LazyHelper.KickOnModsMismatch > 0)
-          Game1.server.kick(e.Peer.PlayerID);
+      if (clientMods.Count > 0) {
+        LazyHelper.LogInfo($"Peer {e.Peer.PlayerID} uses mods: {clientModsStr}");
+      }
+      if (denylistMods.Count > 0) {
+        LazyHelper.LogWarn($"Peer {e.Peer.PlayerID} kicked for using illegal mods: {deniedModsStr}");
+        Game1.server.kick(e.Peer.PlayerID);
       }
     }
 

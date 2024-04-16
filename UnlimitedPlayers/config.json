@@ -1,6 +1,8 @@
 {
   "PlayerLimit": 10,
-  "KickOnModsMismatch": 0,
-  "RequiredMods": [],
-  "OptionalMods": []
+  "ClientMods": {
+    "Denylist": [
+      "CJBok.CheatsMenu", "Ryaon.JunimoKartCheater"
+    ]
+  }
 }
