@@ -9,9 +9,7 @@ namespace UnlimitedPlayers
   public static class LazyHelper
   {
     public static int PlayerLimit { get; set; } = 10;
-    public static int KickOnModsMismatch { get; set; } = 0;
-    public static List<string> RequiredMods { get; set; } = new List<string>();
-    public static List<string> OptionalMods { get; set; } = new List<string>();
+    public static List<string> ClientModsDenylist { get; set; } = new List<string>();
     public static IModHelper ModHelper { get; set; }
     public static ModEntry ModEntry { get; set; }
 
@@ -90,22 +88,22 @@ namespace UnlimitedPlayers
     }
   }
 
+  public class ClientModsConfig {
+    public List<string> Denylist { get; set; } = new List<string>() {
+      "CJBok.CheatsMenu", "Ryaon.JunimoKartCheater"
+    };
+  }
+
   public class ConfigParser
   {
     public int PlayerLimit { get; set; } = 10;
 
-    public int KickOnModsMismatch { get; set; } = 0;
-
-    public List<string> RequiredMods { get; set; } = new List<string>();
-
-    public List<string> OptionalMods { get; set; } = new List<string>();
+    public ClientModsConfig ClientMods { get; set; } = new ClientModsConfig();
 
     public void Store()
     {
       LazyHelper.PlayerLimit = PlayerLimit;
-      LazyHelper.KickOnModsMismatch = KickOnModsMismatch;
-      LazyHelper.RequiredMods = RequiredMods;
-      LazyHelper.OptionalMods = OptionalMods;
+      LazyHelper.ClientModsDenylist = ClientMods.Denylist;
     }
   }
 }
