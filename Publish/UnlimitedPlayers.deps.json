@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "UnlimitedPlayers/2024.3.30": {
+      "UnlimitedPlayers/2024.4.16": {
         "dependencies": {
           "Pathoschild.Stardew.ModBuildConfig": "4.1.1"
         },
@@ -18,7 +18,7 @@
     }
   },
   "libraries": {
-    "UnlimitedPlayers/2024.3.30": {
+    "UnlimitedPlayers/2024.4.16": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

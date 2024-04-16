@@ -1,0 +1,22 @@
+{
+  "files.trimTrailingWhitespace": true,
+  "[csharp]": {
+    "editor.rulers": [
+      {
+          "column": 80,
+          "color": "#00FF00"
+      },
+      {
+          "column": 88,
+          "color": "#FFA500"
+      },
+      {
+          "column": 120,
+          "color": "#FF0000"
+      }
+    ],
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.renderWhitespace": "selection"
+  }
+}
