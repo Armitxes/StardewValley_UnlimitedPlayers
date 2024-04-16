@@ -1,4 +1,3 @@
-using System.Linq;
 using StardewModdingAPI;
 using StardewValley;
 
@@ -72,6 +71,7 @@ namespace UnlimitedPlayers.Commands
 
       string result = "\n--- Suspicious Accounts ---\n";
       int earned = team.totalMoneyEarned.Value;
+      earned += 500;  // Start money
 
       foreach(Farmer farmer in Game1.getAllFarmers()) {
         string uid = farmer.UniqueMultiplayerID.ToString();

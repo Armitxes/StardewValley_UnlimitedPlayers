@@ -3,7 +3,7 @@
   <PropertyGroup>
     <AssemblyName>UnlimitedPlayers</AssemblyName>
     <RootNamespace>UnlimitedPlayers</RootNamespace>
-    <Version>2024.3.30</Version>
+    <Version>2024.4.16</Version>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>Latest</LangVersion>
   </PropertyGroup>
